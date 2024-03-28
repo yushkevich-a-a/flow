@@ -1,0 +1,11 @@
+.text-updater-node {
+  height: 50px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.text-updater-node label {
+  display: block;
+  color: #000;
+  font-size: 12px;
+}
