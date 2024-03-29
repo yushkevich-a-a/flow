@@ -30,7 +30,7 @@ export function LabelEdges({
 
 	return (
 		<>
-			<BaseEdge id={id} path={edgePath} />
+			<BaseEdge id={id} path={edgePath} markerEnd="arrow" />
 			<EdgeLabelRenderer>
 				<button
 					style={{
