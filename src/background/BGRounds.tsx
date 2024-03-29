@@ -11,7 +11,7 @@ const RoundBG = styled.div<{
 	left: ${({ $x }) => $x + "px"};
 	width: ${({ $diameter }) => $diameter + "px"};
 	height: ${({ $diameter }) => $diameter + "px"};
-	background-color: rgba(54, 180, 255, 0.5);
+	background-color: rgba(54, 180, 255, 0.4);
 	border-radius: 50%;
 	backdrop-filter: blur(500px);
 	filter: blur(250px);
@@ -27,7 +27,6 @@ const initPosition = [
 
 export const BGRounds = () => {
 	const [posArr, setPosArray] = useState(initPosition);
-	const [count, setCount] = useState(0);
 
 	let timerId: number | null | undefined = null;
 	useEffect(() => {

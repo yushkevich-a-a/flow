@@ -6,6 +6,7 @@ export const edges: TEdge[] = [
 		source: "1",
 		sourceHandle: "a",
 		target: "2",
+		type: "direction",
 		animated: true,
 		style: { stroke: "green" },
 	},
@@ -16,6 +17,6 @@ export const edges: TEdge[] = [
 		target: "3",
 		animated: true,
 		style: { stroke: "red" },
-		type: "step",
+		type: "direction",
 	},
 ];

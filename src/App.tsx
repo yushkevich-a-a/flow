@@ -17,7 +17,8 @@ import "reactflow/dist/style.css";
 import { BGWrapper } from "./background/BGWrapper";
 // import { TEdge, TNode } from "./types";
 import { nodes as initialNodes, edges as initialEdges } from "./data";
-import { nodeTypes } from "./componentsTypes";
+import { nodeTypes } from "./componentsTypes/NodesComponents";
+import { edgesTypes } from "./componentsTypes";
 
 export default function App() {
 	const [nodes, setNodes] = useNodesState(initialNodes);
@@ -25,11 +26,7 @@ export default function App() {
 
 	const onConnect = useCallback(
 		(connection: any) =>
-			setEdges((eds) => {
-				console.log("добавление новой связи");
-				const data = addEdge({ ...connection, animated: true }, eds);
-				return data;
-			}),
+			setEdges((eds) => addEdge({ ...connection, animated: true }, eds)),
 		[setEdges]
 	);
 
@@ -56,6 +53,7 @@ export default function App() {
 				panOnDrag={[1, 6]}
 				selectionMode={SelectionMode.Partial}
 				nodeTypes={nodeTypes}
+				edgeTypes={edgesTypes}
 			>
 				<Panel children={<Controls />} position={"bottom-left"} />
 
