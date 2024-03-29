@@ -1,0 +1,1 @@
+export { LabelEdges } from './LabelEdge';
