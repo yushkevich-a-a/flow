@@ -11,6 +11,8 @@ import ReactFlow, {
 	applyEdgeChanges,
 	SelectionMode,
 	Panel,
+	Edge,
+	useReactFlow,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
@@ -20,15 +22,12 @@ import { nodes as initialNodes, edges as initialEdges } from "./data";
 import { nodeTypes } from "./componentsTypes/NodesComponents";
 import { edgesTypes } from "./componentsTypes";
 
+let nodeId = 10;
+
 export default function App() {
 	const [nodes, setNodes] = useNodesState(initialNodes);
 	const [edges, setEdges] = useEdgesState(initialEdges);
-
-	const onConnect = useCallback(
-		(connection: any) =>
-			setEdges((eds) => addEdge({ ...connection, animated: true }, eds)),
-		[setEdges]
-	);
+	const reactFlowInstance = useReactFlow();
 
 	const onNodesChange = useCallback(
 		(changes: any) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -36,9 +35,29 @@ export default function App() {
 	);
 
 	const onEdgesChange = useCallback(
-		(connection: any) => setEdges((eds) => applyEdgeChanges(connection, eds)),
+		(changes: any) => setEdges((eds) => applyEdgeChanges(changes, eds)),
 		[setEdges]
 	);
+
+	const onConnect = useCallback(
+		(connection: any) => setEdges((eds) => addEdge(connection, eds)),
+		[setEdges]
+	);
+
+	const onHandleAddNode = useCallback(() => {
+		const id = `${++nodeId}`;
+		const newNode = {
+			id,
+			position: {
+				x: Math.random() * 500,
+				y: Math.random() * 500,
+			},
+			data: {
+				label: `Node ${id}`,
+			},
+		};
+		reactFlowInstance.addNodes(newNode);
+	}, []);
 
 	return (
 		<BGWrapper>
@@ -47,15 +66,23 @@ export default function App() {
 				edges={edges}
 				onNodesChange={onNodesChange}
 				onEdgesChange={onEdgesChange}
-				onConnect={onConnect}
-				panOnScroll
-				selectionOnDrag
-				panOnDrag={[1, 6]}
-				selectionMode={SelectionMode.Partial}
 				nodeTypes={nodeTypes}
 				edgeTypes={edgesTypes}
+				onConnect={onConnect}
+				panOnDrag={[1, 6]}
+				panOnScroll
+				selectionOnDrag
+				fitView
+				selectionMode={SelectionMode.Partial}
 			>
-				<Panel children={<Controls />} position={"bottom-left"} />
+				<Panel
+					children={
+						<Controls>
+							<button onClick={onHandleAddNode}>Add node</button>
+						</Controls>
+					}
+					position={"bottom-left"}
+				/>
 
 				{/* <MiniMap /> */}
 				<Background variant={BackgroundVariant.Dots} gap={16} size={1} />

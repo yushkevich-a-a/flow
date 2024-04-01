@@ -1,6 +1,6 @@
-import { TEdge } from "../types";
+import { Edge } from "reactflow";
 
-export const edges: TEdge[] = [
+export const edges: Edge[] = [
 	{
 		id: "e1-2",
 		source: "1",
