@@ -18,6 +18,10 @@ import {
   edges as initialEdges
 } from './../data';
 
+export type NodeData = {
+  color: string;
+};
+
 export type RFState = {
   nodes: Node[];
   edges: Edge[];
@@ -27,6 +31,7 @@ export type RFState = {
   setNodes: (nodes: Node[]) => void;
   setEdges: (edges: Edge[]) => void;
   addNode: () => void;
+  updateNodeColor: (nodeId: string, color: string) => void;
 };
 
 
@@ -72,7 +77,19 @@ const useStore = create<RFState>((set, get) => ({
       };
       set({ nodes: [...get().nodes, newNode] });
     }
-  )
+  ),
+  updateNodeColor: (nodeId: string, color: string) => {
+    set({
+      nodes: get().nodes.map((node) => {
+        if (node.id === nodeId) {
+          // it's important to create a new object here, to inform React Flow about the cahnges
+          node.data = { ...node.data, color };
+        }
+
+        return node;
+      }),
+    });
+  },
 }));
 
 export {

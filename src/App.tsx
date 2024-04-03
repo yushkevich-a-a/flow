@@ -25,18 +25,18 @@ import { useStore } from "./store";
 import { useShallow } from "zustand/react/shallow";
 import { RFState } from "./store/store";
 
-const selector = (state: RFState) => ({
-	nodes: state.nodes,
-	edges: state.edges,
-	onNodesChange: state.onNodesChange,
-	onEdgesChange: state.onEdgesChange,
-	onConnect: state.onConnect,
-	addNode: state.addNode,
-});
+const selector = (state: RFState) => ({ ...state });
 
 export default function App() {
-	const { nodes, edges, onNodesChange, onEdgesChange, onConnect, addNode } =
-		useStore(useShallow(selector));
+	const {
+		nodes,
+		edges,
+		onNodesChange,
+		onEdgesChange,
+		onConnect,
+		addNode,
+		updateNodeColor,
+	} = useStore(useShallow(selector));
 
 	return (
 		<BGWrapper>

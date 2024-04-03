@@ -17,6 +17,13 @@ export const nodes: Node[] = [
 		style: { backgroundColor: "#ff0072", color: "white" },
 	},
 	{
+		id: "22",
+		// you can also pass a React component as a label
+		type: "colorChooserNode",
+		data: { label: "Change Color", color: "#F6E05E" },
+		position: { x: 200, y: 125 },
+	},
+	{
 		id: "3",
 		type: "output",
 		data: { label: "Node 2" },
