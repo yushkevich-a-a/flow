@@ -21,43 +21,22 @@ import { BGWrapper } from "./background/BGWrapper";
 import { nodes as initialNodes, edges as initialEdges } from "./data";
 import { nodeTypes } from "./componentsTypes/NodesComponents";
 import { edgesTypes } from "./componentsTypes";
+import { useStore } from "./store";
+import { useShallow } from "zustand/react/shallow";
+import { RFState } from "./store/store";
 
-let nodeId = 10;
+const selector = (state: RFState) => ({
+	nodes: state.nodes,
+	edges: state.edges,
+	onNodesChange: state.onNodesChange,
+	onEdgesChange: state.onEdgesChange,
+	onConnect: state.onConnect,
+	addNode: state.addNode,
+});
 
 export default function App() {
-	const [nodes, setNodes] = useNodesState(initialNodes);
-	const [edges, setEdges] = useEdgesState(initialEdges);
-	const reactFlowInstance = useReactFlow();
-
-	const onNodesChange = useCallback(
-		(changes: any) => setNodes((nds) => applyNodeChanges(changes, nds)),
-		[setNodes]
-	);
-
-	const onEdgesChange = useCallback(
-		(changes: any) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-		[setEdges]
-	);
-
-	const onConnect = useCallback(
-		(connection: any) => setEdges((eds) => addEdge(connection, eds)),
-		[setEdges]
-	);
-
-	const onHandleAddNode = useCallback(() => {
-		const id = `${++nodeId}`;
-		const newNode = {
-			id,
-			position: {
-				x: Math.random() * 500,
-				y: Math.random() * 500,
-			},
-			data: {
-				label: `Node ${id}`,
-			},
-		};
-		reactFlowInstance.addNodes(newNode);
-	}, []);
+	const { nodes, edges, onNodesChange, onEdgesChange, onConnect, addNode } =
+		useStore(useShallow(selector));
 
 	return (
 		<BGWrapper>
@@ -78,7 +57,7 @@ export default function App() {
 				<Panel
 					children={
 						<Controls>
-							<button onClick={onHandleAddNode}>Add node</button>
+							<button onClick={addNode}>Add node</button>
 						</Controls>
 					}
 					position={"bottom-left"}
