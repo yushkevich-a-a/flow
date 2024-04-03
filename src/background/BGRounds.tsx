@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+const Container = styled.div`
+	position: absolute;
+	width: 1920px;
+	height: 1080px;
+	background-color: rgba(22, 26, 29, 0.4);
+	backdrop-filter: blur(300px);
+`;
+
 const RoundBG = styled.div<{
 	$x: number;
 	$y: number;
@@ -54,7 +62,7 @@ export const BGRounds = () => {
 	}, []);
 
 	return (
-		<>
+		<Container>
 			{posArr.map((item) => (
 				<RoundBG
 					key={item.id}
@@ -64,6 +72,6 @@ export const BGRounds = () => {
 					$timer={item.timer}
 				/>
 			))}
-		</>
+		</Container>
 	);
 };

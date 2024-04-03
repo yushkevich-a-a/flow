@@ -17,13 +17,6 @@ export const nodes: Node[] = [
 		style: { backgroundColor: "#ff0072", color: "white" },
 	},
 	{
-		id: "22",
-		// you can also pass a React component as a label
-		type: "colorChooserNode",
-		data: { label: "Change Color", color: "#F6E05E" },
-		position: { x: 200, y: 125 },
-	},
-	{
 		id: "3",
 		type: "output",
 		data: { label: "Node 2" },
@@ -36,7 +29,7 @@ export const nodes: Node[] = [
 		// you can also pass a React component as a label
 		type: "output",
 		data: { label: "Parent" },
-		position: { x: 100, y: 125 },
+		position: { x: 200, y: 250 },
 		style: {
 			backgroundColor: "rgba(255, 255, 255, 0.5)",
 			color: "white",
@@ -46,19 +39,47 @@ export const nodes: Node[] = [
 	},
 	{
 		id: "5",
+		type: "output",
 		data: { label: "child 2" },
 		position: { x: 10, y: 10 },
-		draggable: false,
-		style: { backgroundColor: "#ffa7f8", color: "white" },
+		style: {
+			backgroundColor: "rgba(255, 167, 248, 0.5)",
+			color: "white",
+			width: 100,
+			height: 125,
+		},
 		parentNode: "4",
 		extent: "parent",
 	},
 	{
 		id: "6",
 		data: { label: "child 3" },
-		position: { x: 40, y: 40 },
-		style: { backgroundColor: "#9993ff", color: "white" },
+		position: { x: 40, y: 160 },
+		style: {
+			backgroundColor: "#9993ff",
+			color: "white",
+		},
 		parentNode: "4",
-		// extent: "parent",
+		extent: "parent",
+	},
+	{
+		id: "7",
+		data: { label: "child 3" },
+		position: { x: 10, y: 10 },
+		style: {
+			backgroundColor: "#0d00ff",
+			color: "white",
+			width: 40,
+			height: 40,
+		},
+		parentNode: "5",
+		extent: "parent",
+	},
+	{
+		id: "22",
+		// you can also pass a React component as a label
+		type: "colorChooserNode",
+		data: { label: "Change Color", color: "#F6E05E" },
+		position: { x: 10, y: 10 },
 	},
 ];

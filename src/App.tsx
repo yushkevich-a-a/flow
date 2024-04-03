@@ -28,15 +28,8 @@ import { RFState } from "./store/store";
 const selector = (state: RFState) => ({ ...state });
 
 export default function App() {
-	const {
-		nodes,
-		edges,
-		onNodesChange,
-		onEdgesChange,
-		onConnect,
-		addNode,
-		updateNodeColor,
-	} = useStore(useShallow(selector));
+	const { nodes, edges, onNodesChange, onEdgesChange, onConnect, addNode } =
+		useStore(useShallow(selector));
 
 	return (
 		<BGWrapper>
@@ -49,9 +42,18 @@ export default function App() {
 				edgeTypes={edgesTypes}
 				onConnect={onConnect}
 				panOnDrag={[1, 6]}
+				// nodeDragThreshold={20}
 				panOnScroll
 				selectionOnDrag
-				fitView
+				preventScrolling
+				snapToGrid
+				snapGrid={[8, 8]}
+				//  при включенном параметре ломается
+				//  позиционирование внутри родительского элемента
+				// nodeExtent={[
+				// 	[0, 0],
+				// 	[1920, 1080],
+				// ]}
 				selectionMode={SelectionMode.Partial}
 			>
 				<Panel
