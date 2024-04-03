@@ -13,12 +13,12 @@ import ReactFlow, {
 	Panel,
 	Edge,
 	useReactFlow,
+	HandleType,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
 import { BGWrapper } from "./background/BGWrapper";
 // import { TEdge, TNode } from "./types";
-import { nodes as initialNodes, edges as initialEdges } from "./data";
 import { nodeTypes } from "./componentsTypes/NodesComponents";
 import { edgesTypes } from "./componentsTypes";
 import { useStore } from "./store";
@@ -41,11 +41,11 @@ export default function App() {
 				nodeTypes={nodeTypes}
 				edgeTypes={edgesTypes}
 				onConnect={onConnect}
-				panOnDrag={[1, 6]}
+				// panOnDrag={[1, 6]}
 				// nodeDragThreshold={20}
 				panOnScroll
-				selectionOnDrag
-				preventScrolling
+				// selectionOnDrag
+				// preventScrolling
 				snapToGrid
 				snapGrid={[8, 8]}
 				//  при включенном параметре ломается
@@ -55,6 +55,19 @@ export default function App() {
 				// 	[1920, 1080],
 				// ]}
 				selectionMode={SelectionMode.Partial}
+				onSelectionChange={(params) => console.log("onSelectionChange", params)}
+				onSelectionDragStart={(_, nodes) =>
+					console.log("onSelectionDragStart", nodes)
+				}
+				onSelectionDrag={(_, nodes) => console.log("onSelectionDrag", nodes)}
+				onSelectionDragStop={(_, nodes) =>
+					console.log("onSelectionDragStop", nodes)
+				}
+				onSelectionStart={() => console.log("onSelectionStart")}
+				onSelectionEnd={() => console.log("onSelectionEnd")}
+				onSelectionContextMenu={(_, nodes) =>
+					console.log("onSelectionContextMenu", nodes)
+				}
 			>
 				<Panel
 					children={

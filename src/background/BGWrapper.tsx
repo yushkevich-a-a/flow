@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import styled from "styled-components";
 import { BGRounds } from "./BGRounds";
 
