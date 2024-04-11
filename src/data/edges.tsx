@@ -6,7 +6,7 @@ export const edges: Edge[] = [
 		source: "1",
 		sourceHandle: "a",
 		target: "2",
-		type: "direct",
+		type: "customEdge",
 		animated: true,
 		style: { stroke: "green" },
 	},

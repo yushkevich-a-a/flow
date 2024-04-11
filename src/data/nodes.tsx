@@ -2,6 +2,13 @@ import { Node } from "reactflow";
 
 export const nodes: Node[] = [
 	{
+		id: "111",
+		type: "nodeCounter",
+		data: { label: "Input Node" },
+		position: { x: 450, y: 25 },
+		style: { backgroundColor: "#6ede87", color: "black" },
+	},
+	{
 		id: "1",
 		type: "textUpdater",
 		data: { label: "Input Node" },
@@ -12,9 +19,10 @@ export const nodes: Node[] = [
 	{
 		id: "2",
 		// you can also pass a React component as a label
+		type: "customNode",
 		data: { label: "Node 1" },
 		position: { x: 100, y: 125 },
-		style: { backgroundColor: "#ff0072", color: "white" },
+		style: { backgroundColor: "#ff0072", color: "white", padding: "10px" },
 	},
 	{
 		id: "3",
