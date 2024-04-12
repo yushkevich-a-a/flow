@@ -1,4 +1,4 @@
-import { Edge } from "reactflow";
+import { Edge, MarkerType } from "reactflow";
 
 export const edges: Edge[] = [
 	{
@@ -8,6 +8,9 @@ export const edges: Edge[] = [
 		target: "2",
 		type: "customEdge",
 		animated: true,
+		markerEnd: {
+			type: MarkerType.ArrowClosed,
+		},
 		style: { stroke: "green" },
 	},
 	{
@@ -16,6 +19,9 @@ export const edges: Edge[] = [
 		sourceHandle: "b",
 		target: "3",
 		animated: true,
+		markerEnd: {
+			type: MarkerType.Arrow,
+		},
 		style: { stroke: "red" },
 		type: "directWithLabel",
 	},

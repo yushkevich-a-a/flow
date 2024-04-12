@@ -8,6 +8,7 @@ import ReactFlow, {
 	Edge,
 	ControlButton,
 	useOnSelectionChange,
+	ConnectionMode,
 } from "reactflow";
 
 import "reactflow/dist/style.css";
@@ -44,6 +45,7 @@ export default function App() {
 				nodeTypes={nodeTypes}
 				edgeTypes={edgesTypes}
 				onConnect={onConnect}
+				connectionMode={ConnectionMode.Loose}
 				// panOnDrag={[1, 2]}
 				// nodeDragThreshold={20}
 				// selectionOnDrag
