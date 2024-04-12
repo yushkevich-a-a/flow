@@ -2,6 +2,13 @@ import { Node } from "reactflow";
 
 export const nodes: Node[] = [
 	{
+		id: "112",
+		type: "randomHandleNode",
+		data: { label: "Input Node" },
+		position: { x: 650, y: 25 },
+		style: { backgroundColor: "#ffd321", color: "black" },
+	},
+	{
 		id: "111",
 		type: "nodeCounter",
 		data: { label: "Input Node" },
